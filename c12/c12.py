@@ -27,6 +27,7 @@ largest_tri_num = 0
 largest_num_of_divisors = 0
 index = 1
 
+print number_of_divisors(45)
 
 while largest_num_of_divisors <= int(sys.argv[1]):
     # print "----- largest_num_of_divisors:", largest_num_of_divisors
