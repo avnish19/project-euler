@@ -1,27 +1,34 @@
+"""
+Module to provide solution to Challenge 12
+"""
 import sys
+import math
 
-def triangle_number(n):
+
+def triangle_number(nth):
     """Returns the nth triangular number"""
+    return nth * (nth + 1) / 2
+
+
+def number_of_divisors(input_number):
+    """Returns the number of divisors of input_number"""
     res = 0
-    for num in range (1, n+1):
-        res += num
+
+    # check for square root divisor
+    if math.sqrt(input_number) % 1 == 0:
+        res += 1
+
+    # check for other integer divisors
+    for num in range(1, int(math.ceil(math.sqrt(input_number)))):
+        if input_number % num == 0:
+            res += 2
 
     return res
 
-def number_of_divisors(n):
-    """Returns the number of divisors of n"""
-    res = 1
-
-    for num in range (1, int(n+1/2)):
-        if n % num == 0:
-            res += 1
-    
-    return res
-
-#test functions above
-# print "tri_num\t", "|", "num_div" 
-# for index in range(1, 11):
-#     print str(triangle_number(index)) + "\t", ":", number_of_divisors(triangle_number(index))
+# test functions above
+print "index\t", "|", "tri_num\t", "|", "num_div"
+for index in range(1, 11):
+    print str(index) + "\t", ":", str(triangle_number(index)) + "\t\t", ":", number_of_divisors(triangle_number(index))
 
 largest_tri_num = 0
 largest_num_of_divisors = 0
@@ -39,7 +46,8 @@ while largest_num_of_divisors <= int(sys.argv[1]):
     if num_div > largest_num_of_divisors:
         largest_num_of_divisors = num_div
         largest_tri_num = tri_num
-        # print "New largest_num_of_divisors found: ", largest_num_of_divisors, "for tri_num", tri_num
+        # print "New largest_num_of_divisors found: ", largest_num_of_divisors,
+        # "for tri_num", tri_num
 
     index += 1
 
